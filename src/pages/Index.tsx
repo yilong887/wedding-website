@@ -35,15 +35,22 @@ const Index = () => {
             className="font-serif text-lg md:text-xl text-muted-foreground mt-4 opacity-0 animate-fade-up"
             style={{ animationDelay: "600ms" }}
           >
-            September 20, 2026 · Lake Erie
+            October 2, 2026 · Perry Community Center
+          </p>
+
+          <p
+            className="text-sm text-muted-foreground mt-2 opacity-0 animate-fade-up"
+            style={{ animationDelay: "700ms" }}
+          >
+            2800 Perry Park Rd, Perry, OH 44081 · by Lake Erie
           </p>
 
           <Link
-            to="/details"
+            to="/timelines"
             className="inline-block mt-10 px-8 py-3 border border-sage text-sage text-sm tracking-widest uppercase rounded-full hover:bg-sage hover:text-primary-foreground transition-all duration-300 active:scale-[0.97] opacity-0 animate-fade-up"
             style={{ animationDelay: "800ms" }}
           >
-            View Details
+            View Timelines
           </Link>
         </div>
       </section>
@@ -78,7 +85,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="py-12 text-center border-t border-border">
         <p className="font-serif text-lg text-muted-foreground">
-          Byron & Elaine · September 20, 2026
+          Byron & Elaine · October 2, 2026
         </p>
       </footer>
     </main>

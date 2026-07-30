@@ -4,8 +4,10 @@ import { Menu, X } from "lucide-react";
 
 const links = [
   { to: "/", label: "Home" },
+  { to: "/save-the-date", label: "Save the Date" },
+  { to: "/invitation", label: "Invitation" },
   { to: "/rsvp", label: "RSVP" },
-  { to: "/details", label: "Details" },
+  { to: "/timelines", label: "Timelines" },
   { to: "/gallery", label: "Gallery" },
   { to: "/gifts", label: "Gifts" },
 ];
@@ -22,12 +24,12 @@ const Navigation = () => {
         </Link>
 
         {/* Desktop */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
           {links.map((l) => (
             <Link
               key={l.to}
               to={l.to}
-              className={`text-sm tracking-widest uppercase transition-colors duration-200 ${
+              className={`text-xs lg:text-sm tracking-widest uppercase whitespace-nowrap transition-colors duration-200 ${
                 location.pathname === l.to
                   ? "text-sage font-medium"
                   : "text-muted-foreground hover:text-foreground"
