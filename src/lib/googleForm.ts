@@ -12,16 +12,16 @@
 
 export const GOOGLE_FORM_CONFIG = {
   /** From your form's URL: https://docs.google.com/forms/d/e/<FORM_ID>/viewform */
-  FORM_ID: "REPLACE_WITH_YOUR_FORM_ID",
+  FORM_ID: "1FAIpQLSeGmVHUTNoW3N2uUHsOoD0FHvCRtTyNpWzIhI-cNa6B1lMnnw",
 
   /** entry.XXXXXXXX IDs from the form's prefilled link (see setup doc). */
   ENTRIES: {
-    fullName: "entry.1000001",
-    email: "entry.1000002",
-    phone: "entry.1000003",
-    attending: "entry.1000004",
-    guestCount: "entry.1000005",
-    guestDetails: "entry.1000006", // one paragraph field; all guests serialized
+    fullName: "entry.328065147",
+    email: "entry.75001668",
+    phone: "entry.905119440",
+    attending: "entry.1080123360",
+    guestCount: "entry.1911978283",
+    guestDetails: "entry.537628484", // one paragraph field; all guests serialized
     message: "entry.1000007",
   },
 };
