@@ -72,6 +72,7 @@ export default {
       fontFamily: {
         serif: ["Cormorant Garamond", "Georgia", "serif"],
         sans: ["DM Sans", "system-ui", "sans-serif"],
+        sans: ["Inter", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
