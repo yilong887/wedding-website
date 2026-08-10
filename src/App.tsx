@@ -12,31 +12,36 @@ import Gifts from "./pages/Gifts";
 import SaveTheDate from "./pages/SaveTheDate";
 import Invitation from "./pages/Invitation";
 import NotFound from "./pages/NotFound";
+import { LanguageProvider } from "@/i18n/LanguageContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/save-the-date" element={<SaveTheDate />} />
-          <Route path="/invitation" element={<Invitation />} />
-          <Route path="/rsvp" element={<Rsvp />} />
-          <Route path="/timelines" element={<Timelines />} />
-          {/* Old URL kept working for anyone with a saved link */}
-          <Route path="/details" element={<Navigate to="/timelines" replace />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/gifts" element={<Gifts />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <LanguageProvider>
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Navigation />
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/save-the-date" element={<SaveTheDate />} />
+              <Route path="/invitation" element={<Invitation />} />
+              <Route path="/rsvp" element={<Rsvp />} />
+              <Route path="/timelines" element={<Timelines />} />
+              {/* Old URL kept working for anyone with a saved link */}
+              <Route path="/details" element={<Navigate to="/timelines" replace />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/gifts" element={<Gifts />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </BrowserRouter>
+  </LanguageProvider>
 );
 
 export default App;
