@@ -6,6 +6,7 @@ import {
   isFormConfigured,
   submitToGoogleForm,
 } from "@/lib/googleForm";
+import { RsvpConfirmation } from "@/components/RsvpConfirmation";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 // 10–15 digits after stripping spaces, dashes, dots, parens; optional leading +
@@ -129,20 +130,7 @@ const Rsvp = () => {
   };
 
   if (submitted) {
-    return (
-      <main className="min-h-screen flex items-center justify-center pt-16">
-        <ScrollReveal>
-          <div className="text-center px-6 max-w-md">
-            <FloralDivider className="mb-8" />
-            <h2 className="wedding-heading text-foreground mb-4">Thank You</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              We've received your RSVP. We're so excited to celebrate with you!
-            </p>
-            <FloralDivider className="mt-8" />
-          </div>
-        </ScrollReveal>
-      </main>
-    );
+    return <RsvpConfirmation attending={formData.attending === "yes"} />;
   }
 
   const inputClass =
