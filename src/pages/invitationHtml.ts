@@ -106,7 +106,7 @@ export const invitationHtml = `
       <!-- Guest Arrival — illustration LEFT, text RIGHT -->
       <div class="tl-item">
         <div class="tl-left">
-          <img class="tl-illus" src="/invite/icon_arrival.png" alt="Arrival" style="transform: translateX(150px); width: 120px; height: 120px;"/>
+          <img class="tl-illus tl-illus-md" src="/invite/icon_arrival.png" alt="Arrival"/>
         </div>
         <div class="tl-center">
           <div class="vline"></div>
@@ -139,7 +139,7 @@ export const invitationHtml = `
       <!-- Cocktail Hour — illustration LEFT, text RIGHT -->
       <div class="tl-item">
         <div class="tl-left">
-          <img class="tl-illus" src="/invite/icon_cocktail.png" alt="Cocktail Hour" style="transform: translateX(150px);width: 120px; height: 120px;"/>
+          <img class="tl-illus tl-illus-md" src="/invite/icon_cocktail.png" alt="Cocktail Hour"/>
         </div>
         <div class="tl-center">
           <div class="vline"></div>
@@ -172,7 +172,7 @@ export const invitationHtml = `
       <!-- Cake & After Party — illustration LEFT, text RIGHT -->
       <div class="tl-item">
         <div class="tl-left">
-          <img class="tl-illus" src="/invite/icon_cake.png" alt="Cake" style="transform: translateX(130px);width: 160px; height: 160px;"/>
+          <img class="tl-illus tl-illus-lg" src="/invite/icon_cake.png" alt="Cake"/>
         </div>
         <div class="tl-center">
           <div class="vline"></div>

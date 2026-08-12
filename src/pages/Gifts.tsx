@@ -27,7 +27,7 @@ const Gifts = () => {
             </h3>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-md mx-auto">
               We feel so blessed to have you in our lives. Having shared a home for
-              some time already, we have most of what we need. So instead of a
+              some time already, we have most of what we need — so instead of a
               traditional registry, we've created a honeymoon fund. If you wish to
               honor us with a gift, a contribution toward our first adventure as a
               married couple would mean the world. But truly, your love and
@@ -85,7 +85,7 @@ const Gifts = () => {
               />
             </div>
             <p className="text-sm text-foreground mt-4 font-serif">
-              Elaine Jiang · {VENMO_HANDLE} · Last 4 digits for verification: 7798
+              Elaine Jiang · {VENMO_HANDLE}
             </p>
             <p className="text-xs text-muted-foreground mt-2">
               Scan with your Venmo app

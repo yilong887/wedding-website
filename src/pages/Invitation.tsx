@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { invitationHtml } from "./invitationHtml";
 import "./invitation.css";
@@ -18,12 +18,6 @@ import "./invitation.css";
 const Invitation = () => {
   const navigate = useNavigate();
   const ref = useRef<HTMLDivElement>(null);
-
-  // Deep links land at the top of the invitation, not wherever the previous
-  // page happened to be scrolled to.
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   // The invitation's own "RSVP Now" / "Give a Gift" buttons are plain anchors.
   // Catch same-site clicks so they route through React Router instead of

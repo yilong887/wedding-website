@@ -22,13 +22,13 @@ export function RsvpConfirmation({ attending = true }: Props) {
         </p>
 
         <h1 className="mt-4 wedding-heading text-foreground">
-          {attending ? "Thank you! We can't wait!" : "Thank you for letting us know"}
+          {attending ? "Thank you — we can't wait!" : "Thank you for letting us know"}
         </h1>
 
         <p className="mt-5 text-base leading-relaxed text-muted-foreground">
           {attending
             ? "We've received your RSVP and you're on the guest list. We're so happy you'll be there to celebrate with us by the lake."
-            : "We've received your RSVP. We'll miss you on the day, but we're grateful you took the time to respond."}
+            : "We've received your RSVP. We'll miss you on the day, but we're grateful you took the time to respond — you'll be in our thoughts."}
         </p>
 
         {/* What happens next */}
@@ -39,17 +39,17 @@ export function RsvpConfirmation({ attending = true }: Props) {
           <p className="text-sm leading-relaxed text-muted-foreground">
             A confirmation email is on its way to the address you gave us. If it
             hasn't arrived within a few minutes, please check your spam or
-            promotions folder. Still nothing? Please get in touch at{" "}
+            promotions folder — it sometimes lands there.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            Still nothing? Please get in touch at{" "}
             <a
               href={`mailto:${CONTACT_EMAIL}?subject=RSVP%20confirmation`}
               className="text-sage underline-offset-4 hover:underline"
             >
               {CONTACT_EMAIL}
-            </a>{"."}
-          </p>
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            
-            And of course, if your plans happen to change before August 25, 2026, just reply to this email and let us know. We’d be more than happy to make changes for you!
+            </a>{" "}
+            and we'll make sure you're counted.
           </p>
         </div>
 

@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Navigation from "@/components/Navigation";
+import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import Rsvp from "./pages/Rsvp";
 import Timelines from "./pages/Timelines";
@@ -21,6 +22,7 @@ const App = () => (
       {/* One router only. There used to be a second, nested <BrowserRouter>
           here, which quietly broke navigation for the inner tree. */}
       <BrowserRouter>
+        <ScrollToTop />
         <Navigation />
         <Routes>
           <Route path="/" element={<Index />} />

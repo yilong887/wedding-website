@@ -810,3 +810,60 @@
   min-height: 100vh;
 }
 .invite-page a { text-decoration: none; }
+
+/* ─────────────────────────────────────────
+   Timeline: responsive icon placement
+───────────────────────────────────────── */
+
+/*
+ * Icons in the LEFT column previously used an inline
+ * `transform: translateX(150px)` to sit near the centre line. A fixed pixel
+ * nudge only works at one width — on a phone the column is ~141px wide, so
+ * 150px pushed the icon completely over the text. `margin-left: auto` gets
+ * the same look at every width.
+ */
+.invite-page .tl-left .tl-illus { margin-left: auto; }
+.invite-page .tl-right .tl-illus { margin-right: auto; }
+
+/* Size variants that replaced the inline width/height. */
+.invite-page .tl-illus-md { width: 120px; height: 120px; }
+.invite-page .tl-illus-lg { width: 160px; height: 160px; }
+
+/* Nothing may spill out of its grid cell, whatever the icon size. */
+.invite-page .tl-illus { max-width: 100%; }
+.invite-page .tl-left,
+.invite-page .tl-right { min-width: 0; }
+
+/* ─── Phones ─── */
+@media (max-width: 600px) {
+  .invite-page .tl-item {
+    grid-template-columns: 1fr 34px 1fr;
+    min-height: 0;
+    padding: 6px 0;
+  }
+  .invite-page .tl-left  { padding-right: 10px; }
+  .invite-page .tl-right { padding-left: 10px; }
+
+  .invite-page .tl-illus,
+  .invite-page .tl-illus-md { width: 84px; height: 84px; }
+  .invite-page .tl-illus-lg { width: 96px; height: 96px; }
+
+  .invite-page .tl-center .dot { margin-top: 46px; }
+
+  .invite-page .tl-time { font-size: 11px; letter-spacing: 0.14em; }
+  .invite-page .tl-name { font-size: 21px; }
+  .invite-page .tl-note { font-size: 13px; line-height: 1.45; }
+  .invite-page .tl-badge { font-size: 9px; }
+}
+
+/* ─── Small phones ─── */
+@media (max-width: 380px) {
+  .invite-page .tl-item { grid-template-columns: 1fr 26px 1fr; }
+  .invite-page .tl-left  { padding-right: 7px; }
+  .invite-page .tl-right { padding-left: 7px; }
+  .invite-page .tl-illus,
+  .invite-page .tl-illus-md { width: 68px; height: 68px; }
+  .invite-page .tl-illus-lg { width: 78px; height: 78px; }
+  .invite-page .tl-name { font-size: 18px; }
+  .invite-page .tl-note { font-size: 12px; }
+}
