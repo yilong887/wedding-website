@@ -29,7 +29,6 @@ export const GOOGLE_FORM_CONFIG = {
 export interface GuestInfo {
   name: string;
   age: string;
-  meal: string;
   allergies: string;
   alcohol: string;
 }
@@ -47,41 +46,64 @@ export interface RsvpPayload {
 export const isFormConfigured = () =>
   !GOOGLE_FORM_CONFIG.FORM_ID.startsWith("REPLACE");
 
-export const serializeGuests = (guests: GuestInfo[]) =>
-  guests
+/**
+ * Google Forms rejects a submission outright if a **required** question
+ * receives an empty value — and because we post with `mode: "no-cors"`,
+ * that rejection is invisible to us (fetch resolves happily on an HTTP 400).
+ *
+ * That combination used to silently drop every "Regretfully Decline": a
+ * decline sends no guest details, so the field went out empty, Google threw
+ * the response away, and the guest still saw the thank-you screen.
+ *
+ * Fix: never send an empty string. A placeholder satisfies a required
+ * question and reads better in the spreadsheet than a blank cell.
+ */
+const NONE = "—";
+
+/** Never returns "" — see the note above. */
+export const serializeGuests = (guests: GuestInfo[]) => {
+  if (!guests.length) return NONE;
+  return guests
     .map(
       (g, i) =>
-        `Guest ${i + 1}: ${g.name || "—"} | Age: ${g.age || "—"} | Meal: ${
-          g.meal || "—"
-        } | Allergies/Dietary: ${g.allergies || "None"} | Drinks: ${
-          g.alcohol || "—"
-        }`
+        `Guest ${i + 1}: ${g.name || NONE} | Age: ${g.age || NONE} | Allergies/Dietary: ${
+          g.allergies || "None"
+        } | Drinks: ${g.alcohol || NONE}`
     )
     .join("\n");
+};
 
 /**
  * Submits the RSVP to the Google Form. Uses `no-cors`, so the response is
- * opaque — Google doesn't allow reading it cross-origin, but the submission
- * still records. Throws only on network failure.
+ * opaque — Google doesn't allow reading it cross-origin. Throws only on
+ * network failure, never on rejection by Google, which is precisely why
+ * every field below is guaranteed non-empty.
  */
 export async function submitToGoogleForm(payload: RsvpPayload): Promise<void> {
   const { FORM_ID, ENTRIES } = GOOGLE_FORM_CONFIG;
-  const body = new URLSearchParams();
-  body.append(ENTRIES.fullName, payload.fullName);
-  body.append(ENTRIES.email, payload.email);
-  body.append(ENTRIES.phone, payload.phone);
-  body.append(ENTRIES.attending, payload.attending ? "Joyfully Accept" : "Regretfully Decline");
-  body.append(ENTRIES.guestCount, String(payload.guestCount));
-  body.append(ENTRIES.guestDetails, payload.attending ? serializeGuests(payload.guests) : "");
-  body.append(ENTRIES.message, payload.message);
 
-  await fetch(
-    `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`,
-    {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: body.toString(),
-    }
+  const body = new URLSearchParams();
+  body.append(ENTRIES.fullName, payload.fullName || NONE);
+  body.append(ENTRIES.email, payload.email || NONE);
+  body.append(ENTRIES.phone, payload.phone || NONE);
+  body.append(
+    ENTRIES.attending,
+    payload.attending ? "Joyfully Accept" : "Regretfully Decline"
   );
+  body.append(ENTRIES.guestCount, String(payload.guestCount ?? 0));
+  body.append(
+    ENTRIES.guestDetails,
+    payload.attending ? serializeGuests(payload.guests) : "Not attending"
+  );
+  body.append(ENTRIES.message, payload.message || NONE);
+
+  // Tells Forms this is a full (not partial) response. Harmless if ignored.
+  body.append("fvv", "1");
+
+  await fetch(`https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: body.toString(),
+  });
 }

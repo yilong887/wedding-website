@@ -1,4 +1,13 @@
-import { Clock, MapPin, Music, Utensils, Wine, Heart, ExternalLink } from "lucide-react";
+import {
+  Clock,
+  MapPin,
+  Utensils,
+  Wine,
+  Heart,
+  Cake,
+  Sparkles,
+  ExternalLink,
+} from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import FloralDivider from "@/components/FloralDivider";
 import waterfrontLawnImg from "@/assets/waterfront-lawn-painted.webp";
@@ -13,12 +22,44 @@ const MAPS_LINK_URL = `https://www.google.com/maps/search/?api=1&query=${encodeU
 )}`;
 
 const timeline = [
-  { time: "3:30 PM", label: "Guest Arrival", icon: Heart, desc: "Welcome drinks on the lakefront terrace" },
-  { time: "4:00 PM", label: "Ceremony", icon: Heart, desc: "Waterfront ceremony with lake views" },
-  { time: "5:00 PM", label: "Cocktail Hour", icon: Wine, desc: "Hors d'oeuvres & refreshments by the shore" },
-  { time: "6:00 PM", label: "Dinner", icon: Utensils, desc: "Seated dinner under the stars" },
-  { time: "7:30 PM", label: "First Dance", icon: Music, desc: "Dancing & celebration continues" },
-  { time: "10:00 PM", label: "Sparkler Send-Off", icon: Heart, desc: "A magical farewell" },
+  {
+    time: "4:00 PM",
+    label: "Guest Arrival & Check-in",
+    icon: Heart,
+    desc: "Doors open · welcome drinks, snacks & lawn games",
+  },
+  {
+    time: "5:00 PM",
+    label: "Ceremony",
+    icon: Heart,
+    desc: "Please be seated by 4:45 PM",
+    badge: "Outdoor",
+  },
+  {
+    time: "5:30 PM",
+    label: "Cocktail Hour",
+    icon: Wine,
+    desc: "Drinks & canapés",
+  },
+  {
+    time: "6:30 PM",
+    label: "Dinner Reception",
+    icon: Utensils,
+    desc: "Seated dinner & toasts",
+    badge: "Indoor",
+  },
+  {
+    time: "8:00 PM",
+    label: "Cake & After Party",
+    icon: Cake,
+    desc: "Dancing & celebration",
+  },
+  {
+    time: "9:30 PM",
+    label: "Farewell",
+    icon: Sparkles,
+    desc: "✦ Safe travels & goodnight ✦",
+  },
 ];
 
 const Timelines = () => {
@@ -53,7 +94,7 @@ const Timelines = () => {
                 <h3 className="wedding-subheading text-foreground mb-2">Ceremony</h3>
                 <div className="space-y-1 text-muted-foreground text-sm">
                   <p className="flex items-center justify-center gap-2">
-                    <Clock size={14} /> 4:00 PM
+                    <Clock size={14} /> 5:00 PM
                   </p>
                   <p className="flex items-center justify-center gap-2">
                     <MapPin size={14} /> Lake Erie Waterfront Lawn
@@ -80,7 +121,7 @@ const Timelines = () => {
                 <h3 className="wedding-subheading text-foreground mb-2">Reception</h3>
                 <div className="space-y-1 text-muted-foreground text-sm">
                   <p className="flex items-center justify-center gap-2">
-                    <Clock size={14} /> 5:00 PM — 10:00 PM
+                    <Clock size={14} /> 5:30 PM — 9:30 PM
                   </p>
                   <p className="flex items-center justify-center gap-2">
                     <MapPin size={14} /> Lakeside Pavilion
@@ -104,31 +145,46 @@ const Timelines = () => {
           {/* Vertical line */}
           <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-border" />
 
-          {timeline.map((item, i) => (
-            <ScrollReveal key={i} delay={i * 80}>
-              <div
-                className={`relative flex items-start mb-10 ${
-                  i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                }`}
-              >
-                {/* Dot */}
-                <div className="absolute left-6 md:left-1/2 w-3 h-3 bg-sage rounded-full -translate-x-1/2 mt-1.5 z-10 ring-4 ring-background" />
-
-                {/* Content */}
+          {timeline.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <ScrollReveal key={item.time} delay={i * 80}>
                 <div
-                  className={`ml-14 md:ml-0 md:w-1/2 ${
-                    i % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"
+                  className={`relative flex items-start mb-10 ${
+                    i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                   }`}
                 >
-                  <p className="text-xs tracking-widest uppercase text-sage font-medium">
-                    {item.time}
-                  </p>
-                  <h4 className="font-serif text-xl text-foreground mt-1">{item.label}</h4>
-                  <p className="text-sm text-muted-foreground mt-1">{item.desc}</p>
+                  {/* Dot */}
+                  <div className="absolute left-6 md:left-1/2 w-3 h-3 bg-sage rounded-full -translate-x-1/2 mt-1.5 z-10 ring-4 ring-background" />
+
+                  {/* Content */}
+                  <div
+                    className={`ml-14 md:ml-0 md:w-1/2 ${
+                      i % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"
+                    }`}
+                  >
+                    <p className="text-xs tracking-widest uppercase text-sage font-medium">
+                      {item.time}
+                    </p>
+                    <h4
+                      className={`font-serif text-xl text-foreground mt-1 flex items-center gap-2 ${
+                        i % 2 === 0 ? "md:justify-end" : ""
+                      }`}
+                    >
+                      <Icon size={16} className="text-dusty-blue shrink-0" />
+                      {item.label}
+                    </h4>
+                    <p className="text-sm text-muted-foreground mt-1">{item.desc}</p>
+                    {item.badge && (
+                      <span className="inline-block mt-2 px-3 py-1 rounded-full border border-border text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
+                        ✦ {item.badge}
+                      </span>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </ScrollReveal>
-          ))}
+              </ScrollReveal>
+            );
+          })}
         </div>
 
         {/* Dress Code */}
@@ -136,8 +192,9 @@ const Timelines = () => {
           <div className="wedding-card text-center mt-16">
             <h3 className="wedding-subheading text-foreground mb-3">Dress Code</h3>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-md mx-auto">
-              Garden formal. Think flowing fabrics and soft tones that complement
-              the lakeside setting. Comfortable shoes recommended for the outdoor ceremony.
+              Garden semi-formal. Think flowing fabrics, soft florals, and soft
+              tones that complement the lakeside setting. Comfortable shoes
+              recommended for the outdoor ceremony.
             </p>
           </div>
         </ScrollReveal>

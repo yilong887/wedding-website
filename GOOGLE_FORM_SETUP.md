@@ -24,13 +24,17 @@ Do **not** mark any question required, and do **not** enable
 "Limit to 1 response" or "Collect email addresses" in Settings →
 Responses (those force sign-in, which would break the no-login flow).
 
-"Guest Details" receives one line per guest with name, age, meal,
-allergies, and drink preference, e.g.:
+"Guest Details" receives one line per guest with name, age, allergies,
+and drink preference, e.g.:
 
 ```
-Guest 1: Jane Doe | Age: 21+ | Meal: fish | Allergies/Dietary: peanuts | Drinks: Wine
-Guest 2: John Doe | Age: 21+ | Meal: chicken | Allergies/Dietary: None | Drinks: Beer
+Guest 1: Jane Doe | Age: 21+ | Allergies/Dietary: peanuts | Drinks: Wine
+Guest 2: John Doe | Age: 21+ | Allergies/Dietary: None | Drinks: Beer
 ```
+
+> **Note:** Meal preference used to appear in this line and was removed in
+> August 2026. Nothing needs to change in the Google Form — meal was never
+> its own question. See "Removing meal preference" at the bottom of this file.
 
 ## 2. Get the FORM_ID
 
@@ -79,3 +83,55 @@ browser localStorage and a warning is printed to the console.)
   read Google's response — it optimistically shows the thank-you screen.
   This is a normal limitation of the no-login Google Form approach.
 - The site itself also validates email/phone before sending.
+
+
+## Removing meal preference (August 2026)
+
+Meal preference was dropped from the RSVP form. Here's the full picture of
+what changed and what, if anything, you need to do on Google's side.
+
+### In the code (already done)
+
+- `src/pages/Rsvp.tsx` — the "Meal Preference" dropdown and the
+  `MEAL_OPTIONS` list are gone.
+- `src/lib/googleForm.ts` — `meal` was removed from the `GuestInfo` type and
+  from the `serializeGuests()` output string.
+
+### In the Google Form — nothing to delete
+
+This is the important part: **meal was never a separate Google Form
+question.** All per-guest answers are packed into the single **Guest Details**
+paragraph field before being submitted. So there is no "Meal Preference"
+question in your form to find and delete, and no entry ID to remove.
+
+If you open your form and *do* see a question called "Meal Preference", it was
+added by hand and the site never wrote to it. In that case, delete it with:
+form editor → click the question → trash-can icon → **Delete**.
+
+### In the Google Sheet — nothing to delete either
+
+For the same reason, there is no "Meal" column. Meal appeared as text
+*inside* the Guest Details cell, like `| Meal: fish |`.
+
+- **New responses** submitted after you deploy this update will simply not
+  contain the `| Meal: ... |` segment. No action needed.
+- **Old responses** already in the sheet keep their `| Meal: ... |` text.
+  Leave them — the sheet is your record of what people actually said.
+
+If you'd rather scrub the meal text out of historical rows:
+
+1. Open the linked Google Sheet.
+2. Select the **Guest Details** column.
+3. **Edit → Find and replace**.
+4. Tick **Search using regular expressions** and **Also search within formulas**.
+5. Find: `\s*\|\s*Meal:[^|]*` — Replace with: (leave empty)
+6. Click **Replace all**.
+
+Make a copy of the sheet first (**File → Make a copy**) if you want an undo
+point — find-and-replace is not reversible beyond Ctrl+Z.
+
+### Don't delete the column itself
+
+Never delete or reorder columns in the responses sheet. Google Forms writes
+to it by position, so removing a column makes every future response land in
+the wrong place.

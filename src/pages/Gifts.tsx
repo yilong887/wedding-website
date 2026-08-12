@@ -1,6 +1,10 @@
-import { Heart, Plane, QrCode } from "lucide-react";
+import { Heart, Plane, QrCode, Info } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import FloralDivider from "@/components/FloralDivider";
+import venmoQr from "@/assets/venmo-qr.png";
+
+const ZELLE_NUMBER = "412-742-6622";
+const VENMO_HANDLE = "@Elaine-Jiang-4";
 
 const Gifts = () => {
   return (
@@ -23,7 +27,7 @@ const Gifts = () => {
             </h3>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-md mx-auto">
               We feel so blessed to have you in our lives. Having shared a home for
-              some time already, we have most of what we need — so instead of a
+              some time already, we have most of what we need. So instead of a
               traditional registry, we've created a honeymoon fund. If you wish to
               honor us with a gift, a contribution toward our first adventure as a
               married couple would mean the world. But truly, your love and
@@ -43,8 +47,22 @@ const Gifts = () => {
               sent via Zelle to:
             </p>
             <div className="inline-block bg-secondary rounded-xl px-8 py-4">
-              <p className="font-serif text-lg text-foreground">byron.elaine@email.com</p>
+              <a
+                href={`tel:${ZELLE_NUMBER.replace(/-/g, "")}`}
+                className="font-serif text-lg text-foreground tracking-wide"
+              >
+                {ZELLE_NUMBER}
+              </a>
             </div>
+
+            <div className="mt-6 mx-auto max-w-md flex items-start gap-2.5 rounded-xl border border-border bg-secondary/50 px-4 py-3 text-left">
+              <Info size={15} className="mt-0.5 shrink-0 text-sage" />
+              <p className="text-xs leading-relaxed text-muted-foreground">
+                Please leave your name in the comment / message of your Zelle
+                transaction so we know who to thank!
+              </p>
+            </div>
+
             <p className="text-xs text-muted-foreground mt-4">
               Every contribution becomes a sunset, a dinner, or a memory we'll
               treasure forever.
@@ -58,11 +76,19 @@ const Gifts = () => {
             <h3 className="wedding-subheading text-foreground mb-4">
               Scan to Contribute
             </h3>
-            <div className="w-48 h-48 mx-auto bg-secondary rounded-xl flex items-center justify-center">
-              <p className="text-xs text-muted-foreground">QR Code Placeholder</p>
+            <div className="w-56 mx-auto rounded-xl overflow-hidden bg-white shadow-sm">
+              <img
+                src={venmoQr}
+                alt={`Venmo QR code for Elaine Jiang, ${VENMO_HANDLE}`}
+                className="w-full h-auto block"
+                loading="lazy"
+              />
             </div>
-            <p className="text-xs text-muted-foreground mt-4">
-              Scan with your banking app to chip in to our honeymoon fund
+            <p className="text-sm text-foreground mt-4 font-serif">
+              Elaine Jiang · {VENMO_HANDLE} · Last 4 digits for verification: 7798
+            </p>
+            <p className="text-xs text-muted-foreground mt-2">
+              Scan with your Venmo app
             </p>
           </div>
         </ScrollReveal>

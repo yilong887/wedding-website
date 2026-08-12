@@ -1,0 +1,812 @@
+/* ─────────────────────────────────────────
+       GLOBAL TOKENS  — edit these to restyle
+    ───────────────────────────────────────── */
+.invite-page {
+      --smoky-blue:       #5b7a9d;
+      --smoky-blue-dark:  #3d5a78;
+      --smoky-blue-deep:  #4a6882;
+      /* 8595a4*/
+      --smoky-blue-mid:   #4a6882;
+      --smoky-blue-light: #8fb4d4;
+      --smoky-blue-pale:  #d0e2f0;
+      --cream:            #faf8f5;
+      --off-white:        #f4f1ec;
+      --text-dark:        #2c3e52;
+      --text-light:       #7a9bb8;
+      --divider:          #c8d8e8;
+      --tape-blue:        rgba(91,122,157,0.22);
+      --font-serif:       'Cormorant Garamond', Georgia, serif;
+      --font-display:     'Playfair Display', Georgia, serif;
+      --font-sans:        'Lato', sans-serif;
+      --font-script:      'Dancing Script', cursive;
+    }
+.invite-page *, .invite-page *::before, .invite-page *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.invite-page { scroll-behavior: smooth; }
+.invite-page {
+      background: var(--cream);
+      color: var(--text-dark);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+/* ─── SHARED ─── */
+.invite-page .label {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--smoky-blue);
+    }
+.invite-page .divider-line {
+      width: 60px; height: 1px;
+      background: var(--divider);
+      margin: 24px auto;
+    }
+.invite-page .section-title {
+      font-family: var(--font-script);
+      font-size: clamp(42px, 9vw, 64px);
+      color: var(--smoky-blue-dark);
+      line-height: 1.1;
+      margin-top: 8px;
+    }
+/* ══════════════════════════════════════════
+       SECTION 1 — HERO (scrapbook style)
+    ══════════════════════════════════════════ */
+.invite-page #hero {
+      background: var(--cream);
+      padding: 56px 24px 80px;
+      overflow: hidden;
+    }
+.invite-page .hero-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+/* — top ornament bar — */
+.invite-page .hero-eyebrow {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+.invite-page .hero-eyebrow .label { display: block; margin-bottom: 10px; }
+.invite-page .hero-eyebrow .ornament-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--smoky-blue-light);
+    }
+.invite-page .hero-eyebrow .ornament-row span { font-size: 20px; opacity: 0.5; }
+.invite-page .hero-eyebrow .ornament-row .line {
+      flex: 1; max-width: 80px;
+      height: 1px;
+      background: var(--divider);
+    }
+/* — scrapbook photo collage — */
+.invite-page .scrapbook {
+      position: relative;
+      width: 100%;
+      min-height: 480px;
+      margin-bottom: 52px;
+    }
+/* main large photo — slightly rotated */
+.invite-page .scrap-main {
+      position: relative;
+      width: 72%;
+      margin: 0 auto;
+      transform: rotate(-1.5deg);
+      z-index: 2;
+    }
+.invite-page .scrap-main img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 3/4;
+      filter: saturate(0.88);
+    }
+/* tape strips */
+.invite-page .tape {
+      position: absolute;
+      background: var(--tape-blue);
+      border: 1px solid rgba(91,122,157,0.18);
+      backdrop-filter: blur(2px);
+      z-index: 10;
+    }
+.invite-page .tape-h { width: 80px; height: 22px; }
+.invite-page .tape-v { width: 22px; height: 80px; }
+.invite-page .tape-top-left { top: -10px; left: 30px; transform: rotate(-5deg); }
+.invite-page .tape-top-right { top: -10px; right: 30px; transform: rotate(4deg); }
+.invite-page .tape-bot-left { bottom: -10px; left: 30px; transform: rotate(3deg); }
+.invite-page .tape-bot-right { bottom: -10px; right: 30px; transform: rotate(-4deg); }
+/* small accent photo — bottom right, rotated opposite */
+.invite-page .scrap-accent {
+      position: absolute;
+      bottom: -20px;
+      right: 0;
+      width: 36%;
+      transform: rotate(3deg);
+      z-index: 3;
+      box-shadow: 2px 4px 18px rgba(44,62,82,0.14);
+    }
+.invite-page .scrap-accent img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 3/4;
+      filter: saturate(0.85);
+    }
+.invite-page .scrap-accent .tape { top: -8px; left: 50%; transform: translateX(-50%) rotate(-2deg); }
+/* handwritten "cheers" label */
+.invite-page .scrap-cheers {
+      position: absolute;
+      bottom: 30px;
+      right: 4px;
+      font-family: var(--font-script);
+      font-size: 22px;
+      color: var(--smoky-blue);
+      transform: rotate(-6deg);
+      z-index: 5;
+      opacity: 0.85;
+    }
+/* doodle note — top left */
+.invite-page .scrap-note {
+      position: absolute;
+      top: 10px;
+      left: -8px;
+      font-family: var(--font-script);
+      font-size: 14px;
+      color: var(--smoky-blue-mid);
+      transform: rotate(-8deg);
+      z-index: 5;
+      line-height: 1.5;
+      opacity: 0.7;
+    }
+/* music notes decoration */
+.invite-page .music-note {
+      position: absolute;
+      font-size: 18px;
+      color: var(--smoky-blue-light);
+      opacity: 0.45;
+      z-index: 1;
+    }
+.invite-page .mn1 { top: 20px; left: 8%; }
+.invite-page .mn2 { top: 60px; right: 6%; font-size: 13px; }
+.invite-page .mn3 { bottom: 80px; left: 5%; font-size: 14px; }
+/* — hero text block — */
+.invite-page .hero-text {
+      text-align: center;
+    }
+.invite-page .hero-text .together {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 19px;
+      color: var(--smoky-blue);
+      letter-spacing: 0.06em;
+    }
+.invite-page .hero-text .names {
+      font-family: var(--font-display);
+      font-size: clamp(54px, 13vw, 88px);
+      font-weight: 400;
+      color: var(--smoky-blue-dark);
+      line-height: 1.0;
+      margin: 10px 0 6px;
+      letter-spacing: -0.01em;
+    }
+.invite-page .hero-text .names .amp {
+      font-style: italic;
+      font-size: 0.72em;
+      color: var(--smoky-blue);
+    }
+.invite-page .hero-text .honour {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 20px;
+      color: var(--smoky-blue);
+      margin-bottom: 32px;
+    }
+/* — date/venue pill row — */
+.invite-page .date-venue-row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+.invite-page .date-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 28px;
+      border: 1px solid var(--divider);
+      background: rgba(255,255,255,0.6);
+      margin-bottom: 16px;
+    }
+.invite-page .date-badge .pipe {
+      width: 1px; height: 32px;
+      background: var(--divider);
+    }
+.invite-page .date-badge .date-part {
+      text-align: center;
+    }
+.invite-page .date-badge .date-part .d-label {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--smoky-blue-light);
+      display: block;
+    }
+.invite-page .date-badge .date-part .d-value {
+      font-family: var(--font-serif);
+      font-size: 23px;
+      font-weight: 500;
+      color: var(--smoky-blue-dark);
+      display: block;
+      line-height: 1.2;
+    }
+.invite-page .venue-line {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--smoky-blue);
+      margin-bottom: 8px;
+    }
+.invite-page .venue-address {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 22px;
+      color: var(--text-light);
+    }
+.invite-page .divider-line { margin: 28px auto; }
+.invite-page .hero-text .guest-note {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 19px;
+      color: var(--smoky-blue);
+      line-height: 1.85;
+      max-width: 460px;
+      margin: 0 auto;
+    }
+/* ══════════════════════════════════════════
+       SECTION 2 — TIMELINE + DRESS CODE
+    ══════════════════════════════════════════ */
+.invite-page #timeline {
+      background: var(--smoky-blue-deep);
+      padding: 80px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+.invite-page #timeline::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 40%, rgba(143,180,212,0.12) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 70%, rgba(74,104,130,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 10%, rgba(91,122,157,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+.invite-page .timeline-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+.invite-page .timeline-heading {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+.invite-page .timeline-heading .label { color: rgba(208,226,240,0.55); }
+.invite-page .timeline-heading h2 {
+      font-family: var(--font-script);
+      font-size: clamp(44px, 10vw, 68px);
+      color: #e8eff7;
+      margin-top: 8px;
+    }
+.invite-page .timeline-heading .sub {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 17px;
+      color: rgba(208,226,240,0.5);
+      margin-top: 6px;
+      letter-spacing: 0.06em;
+    }
+/* — illustrated timeline items — */
+.invite-page .tl-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+.invite-page .tl-item {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      align-items: center;
+      min-height: 160px;
+    }
+/* left-side content */
+.invite-page .tl-left {
+      text-align: right;
+      padding-right: 20px;
+    }
+/* right-side content */
+.invite-page .tl-right {
+      text-align: left;
+      padding-left: 20px;
+    }
+/* centre column: dot + line */
+.invite-page .tl-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      height: 100%;
+    }
+.invite-page .tl-center .dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: rgba(208,226,240,0.3);
+      border: 1.5px solid rgba(208,226,240,0.55);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+      margin-top: 74px;
+    }
+.invite-page .tl-center .dot.lit {
+      background: var(--smoky-blue-light);
+      border-color: #c8dff0;
+      box-shadow: 0 0 12px rgba(143,180,212,0.6);
+    }
+.invite-page .tl-center .vline {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      width: 1px;
+      background: rgba(208,226,240,0.15);
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+/* illustration */
+.invite-page .tl-illus {
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.18));
+    }
+/* text block */
+.invite-page .tl-time {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(208,226,240,0.45);
+      margin-bottom: 4px;
+    }
+.invite-page .tl-name {
+      font-family: var(--font-script);
+      font-size: 26px;
+      color: #dde8f2;
+      line-height: 1.2;
+    }
+.invite-page .tl-note {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 16px;
+      color: rgba(208,226,240,0.5);
+      margin-top: 3px;
+      line-height: 1.5;
+    }
+.invite-page .tl-badge {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 3px 12px;
+      border: 1px solid rgba(208,226,240,0.25);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(208,226,240,0.45);
+    }
+/* — dress code — */
+.invite-page .dress-code-block {
+      margin-top: 72px;
+      border-top: 1px solid rgba(208,226,240,0.12);
+      padding-top: 60px;
+      text-align: center;
+    }
+.invite-page .dress-code-block .label { color: rgba(208,226,240,0.5); }
+.invite-page .dress-code-block h3 {
+      font-family: var(--font-script);
+      font-size: 48px;
+      color: #e8eff7;
+      margin: 8px 0 20px;
+    }
+/* palette swatches */
+.invite-page .swatches {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 28px;
+      margin: 0 auto 24px;
+    }
+.invite-page .swatch-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+.invite-page .swatch {
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+.invite-page .swatch-wrap .sw-name {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(208,226,240,0.35);
+    }
+.invite-page .dc-desc {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      color: rgba(208,226,240,0.72);
+      line-height: 1.9;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+.invite-page .dc-note {
+      font-family: var(--font-script);
+      font-size: 26px;
+      color: rgba(208,226,240,0.4);
+      margin-top: 20px;
+    }
+/* ══════════════════════════════════════════
+       SECTION 3 — GETTING THERE
+    ══════════════════════════════════════════ */
+.invite-page #getting-there {
+      background: var(--cream);
+      padding: 80px 24px 80px;
+    }
+.invite-page .getting-there-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+.invite-page .section-heading {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+.invite-page .section-heading .label { color: var(--smoky-blue); }
+/* — info cards grid — */
+.invite-page .gt-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+@media (max-width: 520px) {
+.invite-page .gt-grid { grid-template-columns: 1fr; }
+
+}
+.invite-page .gt-card {
+      background: #fff;
+      border: 1px solid var(--divider);
+      padding: 28px 24px;
+      position: relative;
+    }
+.invite-page .gt-card-full { grid-column: 1 / -1; }
+.invite-page .gt-card-icon {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--smoky-blue-pale);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+      font-size: 18px;
+    }
+.invite-page .gt-card h4 {
+      font-family: var(--font-serif);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--smoky-blue);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--divider);
+    }
+.invite-page .gt-card p {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      color: var(--text-dark);
+      line-height: 1.85;
+    }
+.invite-page .gt-card .note {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-top: 10px;
+    }
+/* hotel list */
+.invite-page .hotel-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+.invite-page .hotel-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+.invite-page .hotel-bullet {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--smoky-blue-pale);
+      border: 1px solid var(--divider);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px;
+      color: var(--smoky-blue);
+      margin-top: 2px;
+    }
+.invite-page .hotel-text .hotel-name {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--smoky-blue-dark);
+      display: block;
+      line-height: 1.3;
+    }
+.invite-page .hotel-text .hotel-loc {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      display: block;
+      margin-top: 2px;
+    }
+/* photo strip */
+.invite-page .photo-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 48px;
+    }
+.invite-page .photo-strip img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.85);
+    }
+.invite-page .photo-strip img:first-child {
+      grid-column: 1 / -1;
+      height: 320px;
+    }
+/* ══════════════════════════════════════════
+       SECTION 4 — RSVP
+    ══════════════════════════════════════════ */
+.invite-page #rsvp {
+      background: var(--smoky-blue-deep);
+      padding: 80px 24px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+.invite-page #rsvp::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(143,180,212,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 100%, rgba(74,104,130,0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+.invite-page .rsvp-inner {
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+.invite-page .rsvp-inner .label { color: rgba(208,226,240,0.5); }
+.invite-page .rsvp-inner h2 {
+      font-family: var(--font-script);
+      font-size: clamp(52px, 12vw, 76px);
+      color: #e8eff7;
+      margin: 8px 0 20px;
+    }
+.invite-page .rsvp-note {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 20px;
+      color: rgba(208,226,240,0.7);
+      line-height: 1.85;
+      max-width: 420px;
+      margin: 0 auto 44px;
+    }
+/* QR frame */
+.invite-page .qr-frame {
+      display: inline-block;
+      padding: 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(208,226,240,0.2);
+      position: relative;
+    }
+/* corner accents */
+.invite-page .qr-frame::before, .invite-page .qr-frame::after {
+      content: '';
+      position: absolute;
+      width: 20px; height: 20px;
+      border-color: var(--smoky-blue-light);
+      border-style: solid;
+      opacity: 0.5;
+    }
+.invite-page .qr-frame::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.invite-page .qr-frame::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+.invite-page .qr-frame img {
+      width: 180px; height: 180px;
+      display: block;
+      filter: invert(0);
+    }
+.invite-page .rsvp-url {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(208,226,240,0.5);
+      margin-top: 18px;
+    }
+.invite-page .gifts-url {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(208,226,240,0.5);
+      margin-top: 18px;
+    }
+/* — CTA buttons — */
+.invite-page .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin: 8px auto 0;
+    }
+.invite-page .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 30px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid rgba(208,226,240,0.35);
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+.invite-page .cta-btn.primary {
+      background: #e8eff7;
+      color: var(--smoky-blue-deep);
+      border-color: #e8eff7;
+    }
+.invite-page .cta-btn.secondary {
+      background: transparent;
+      color: rgba(208,226,240,0.85);
+    }
+/* — add to calendar — */
+.invite-page .cal-block {
+      margin-top: 40px;
+    }
+.invite-page .cal-block .cal-label {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(208,226,240,0.45);
+      margin-bottom: 14px;
+    }
+.invite-page .cal-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+.invite-page .cal-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(208,226,240,0.7);
+      border: 1px solid rgba(208,226,240,0.2);
+      background: rgba(255,255,255,0.04);
+      transition: background 0.2s ease;
+    }
+.invite-page .cal-btn:hover { background: rgba(255,255,255,0.1); }
+/* deadline — prominent */
+.invite-page .rsvp-deadline-wrap {
+      margin-top: 40px;
+      padding: 22px 32px;
+      border: 1px solid rgba(208,226,240,0.25);
+      background: rgba(143,180,212,0.08);
+      display: inline-block;
+    }
+.invite-page .rsvp-deadline-wrap .dl-label {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(208,226,240,0.45);
+      display: block;
+      margin-bottom: 6px;
+    }
+.invite-page .rsvp-deadline-wrap .dl-date {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 500;
+      color: #c8dff0;
+      display: block;
+      letter-spacing: 0.04em;
+    }
+.invite-page .rsvp-deadline-wrap .dl-note {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 16px;
+      color: rgba(208,226,240,0.4);
+      display: block;
+      margin-top: 4px;
+    }
+/* closing */
+.invite-page .gifts-block {
+      margin-top: 60px;
+      text-align: center;
+      padding: 36px 24px;
+      border: 1px solid rgba(208,226,240,0.15);
+      background: rgba(143,180,212,0.06);
+    }
+.invite-page .closing {
+      margin-top: 64px;
+      text-align: center;
+    }
+.invite-page .closing .close-line {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 22px;
+      color: rgba(208,226,240,0.65);
+      line-height: 1.9;
+    }
+.invite-page .closing .close-names {
+      font-family: var(--font-script);
+      font-size: 42px;
+      color: #dde8f2;
+      margin-top: 10px;
+    }
+/* footer */
+.invite-page footer {
+      text-align: center;
+      padding: 28px 24px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(208,226,240,0.3);
+      background: var(--smoky-blue-deep);
+      border-top: 1px solid rgba(208,226,240,0.08);
+    }
+
+/* ─────────────────────────────────────────
+   Site integration (added when the standalone
+   invitation was moved into the React app)
+───────────────────────────────────────── */
+.invite-page {
+  /* Clears the site's fixed 4rem navigation bar. */
+  padding-top: 64px;
+  min-height: 100vh;
+}
+.invite-page a { text-decoration: none; }

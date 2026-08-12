@@ -13,11 +13,6 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const PHONE_RE = /^\+?\d{10,15}$/;
 
 const AGE_OPTIONS = ["Under 12", "12–20", "21+"];
-const MEAL_OPTIONS = [
-  { value: "chicken", label: "Herb-Roasted Chicken" },
-  { value: "fish", label: "Pan-Seared Salmon" },
-  { value: "vegetarian", label: "Garden Vegetarian" },
-];
 const ALCOHOL_OPTIONS = [
   "No alcohol",
   "Wine",
@@ -29,7 +24,6 @@ const ALCOHOL_OPTIONS = [
 const emptyGuest = (): GuestInfo => ({
   name: "",
   age: "",
-  meal: "",
   allergies: "",
   alcohol: "",
 });
@@ -130,7 +124,7 @@ const Rsvp = () => {
   };
 
   if (submitted) {
-    return <RsvpConfirmation attending={formData.attending === "yes"} />;
+    return <RsvpConfirmation attending={form.attending} />;
   }
 
   const inputClass =
@@ -305,25 +299,6 @@ const Rsvp = () => {
                     </div>
 
                     <div>
-                      <label htmlFor={`guest-${i}-meal`} className={labelClass}>
-                        Meal Preference
-                      </label>
-                      <select
-                        id={`guest-${i}-meal`}
-                        value={guest.meal}
-                        onChange={(e) => updateGuest(i, "meal", e.target.value)}
-                        className={inputClass}
-                      >
-                        <option value="">Select preference</option>
-                        {MEAL_OPTIONS.map((m) => (
-                          <option key={m.value} value={m.value}>
-                            {m.label}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div>
                       <label htmlFor={`guest-${i}-allergies`} className={labelClass}>
                         Allergies / Dietary Needs
                       </label>
@@ -350,7 +325,7 @@ const Rsvp = () => {
                 onChange={(e) => setForm({ ...form, notes: e.target.value })}
                 rows={3}
                 className={inputClass}
-                placeholder="Share your well wishes..."
+                placeholder="Share your well wishes... (optional)"
               />
             </div>
 

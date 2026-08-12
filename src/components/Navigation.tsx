@@ -1,24 +1,18 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import { LanguageToggle } from "@/components/LanguageToggle";
-import { useLanguage } from "@/i18n/LanguageContext";
+
+const links = [
+  { to: "/", label: "Home" },
+  { to: "/invitation", label: "Invitation" },
+  { to: "/rsvp", label: "RSVP" },
+  { to: "/timelines", label: "Timelines" },
+  { to: "/gifts", label: "Gifts" },
+];
 
 const Navigation = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
-  const { t } = useLanguage();
-
-  // Moved inside the component: t() is a hook value and can't run at module scope.
-  const links = [
-    { to: "/", label: t("nav.home") },
-    { to: "/save-the-date", label: t("nav.saveTheDate") },
-    { to: "/invitation", label: t("nav.invitation") },
-    { to: "/rsvp", label: t("nav.rsvp") },
-    { to: "/timelines", label: t("nav.timelines") },
-    { to: "/gallery", label: t("nav.gallery") },
-    { to: "/gifts", label: t("nav.gifts") },
-  ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
@@ -42,22 +36,17 @@ const Navigation = () => {
               {l.label}
             </Link>
           ))}
-
-          <LanguageToggle className="ml-1" />
         </div>
 
-        {/* Mobile: toggle sits outside the hamburger so it's reachable without opening the menu */}
-        <div className="flex items-center gap-1 md:hidden">
-          <LanguageToggle />
-          <button
-            onClick={() => setOpen(!open)}
-            className="p-2 text-foreground active:scale-95 transition-transform"
-            aria-label={t("nav.toggleMenu")}
-            aria-expanded={open}
-          >
-            {open ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
+        {/* Mobile */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="md:hidden p-2 text-foreground active:scale-95 transition-transform"
+          aria-label="Toggle menu"
+          aria-expanded={open}
+        >
+          {open ? <X size={20} /> : <Menu size={20} />}
+        </button>
       </div>
 
       {/* Mobile menu */}
