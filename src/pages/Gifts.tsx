@@ -27,7 +27,7 @@ const Gifts = () => {
             </h3>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-md mx-auto">
               We feel so blessed to have you in our lives. Having shared a home for
-              some time already, we have most of what we need — so instead of a
+              some time already, we have most of what we need. So instead of a
               traditional registry, we've created a honeymoon fund. If you wish to
               honor us with a gift, a contribution toward our first adventure as a
               married couple would mean the world. But truly, your love and
