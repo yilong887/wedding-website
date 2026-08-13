@@ -85,7 +85,7 @@ const Gifts = () => {
               />
             </div>
             <p className="text-sm text-foreground mt-4 font-serif">
-              Elaine Jiang · {VENMO_HANDLE}
+              Elaine Jiang · {VENMO_HANDLE} · Last 4 digits for verification: 7798
             </p>
             <p className="text-xs text-muted-foreground mt-2">
               Scan with your Venmo app
