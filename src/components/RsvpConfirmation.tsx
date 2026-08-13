@@ -22,7 +22,7 @@ export function RsvpConfirmation({ attending = true }: Props) {
         </p>
 
         <h1 className="mt-4 wedding-heading text-foreground">
-          {attending ? "Thank you! we can't wait!" : "Thank you for letting us know"}
+          {attending ? "Thank you! We can't wait!" : "Thank you for letting us know"}
         </h1>
 
         <p className="mt-5 text-base leading-relaxed text-muted-foreground">
@@ -45,8 +45,7 @@ export function RsvpConfirmation({ attending = true }: Props) {
               className="text-sage underline-offset-4 hover:underline"
             >
               {CONTACT_EMAIL}
-            </a>{" "}
-            and we'll make sure you're counted.
+            </a>{"."}
           </p>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
             And of course, if your plans happen to change before August 25, 2026, just reply to this email and let us know. We’d be more than happy to make any changes for you.
