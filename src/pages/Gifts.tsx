@@ -2,6 +2,7 @@ import { Heart, Plane, QrCode, Info } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import FloralDivider from "@/components/FloralDivider";
 import venmoQr from "@/assets/venmo-qr.png";
+import wechatQr from "@/assets/wechat.jpeg";
 
 const ZELLE_NUMBER = "412-742-6622";
 const VENMO_HANDLE = "@Elaine-Jiang-4";
@@ -89,6 +90,29 @@ const Gifts = () => {
             </p>
             <p className="text-xs text-muted-foreground mt-2">
               Scan with your Venmo app
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={300}>
+          <div className="wedding-card text-center">
+            <QrCode className="mx-auto mb-4 text-sage" size={24} />
+            <h3 className="wedding-subheading text-foreground mb-4">
+              Scan to Contribute (WeChat微信)
+            </h3>
+            <div className="w-56 mx-auto rounded-xl overflow-hidden bg-white shadow-sm">
+              <img
+                src={wechatQr}
+                alt={`WeChat QR code for Yilong Chen`}
+                className="w-full h-auto block"
+                loading="lazy"
+              />
+            </div>
+            <p className="text-sm text-foreground mt-4 font-serif">
+              Yilong Chen · 陈亦龙
+            </p>
+            <p className="text-xs text-muted-foreground mt-2">
+              Scan with your WeChat App
             </p>
           </div>
         </ScrollReveal>
